@@ -10,7 +10,6 @@ use Illuminate\Support\ServiceProvider;
 use Kr0lik\DtoToSwagger\Command\SwaggerGenerator;
 use Kr0lik\DtoToSwagger\Dto\ConfigDto;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\DescriptionDescriber;
-use Kr0lik\DtoToSwagger\OperationDescriber\Describers\ExceptionDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\HeaderParameterDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\PathParameterDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\QueryParameterDescriber;
@@ -18,12 +17,14 @@ use Kr0lik\DtoToSwagger\OperationDescriber\Describers\RequestDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\ResponseDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\SecurityDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\Describers\TagDescriber;
+use Kr0lik\DtoToSwagger\OperationDescriber\Describers\ThrowsDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\OperationDescriber;
 use Kr0lik\DtoToSwagger\OperationDescriber\OperationDescriberInterface;
 use Kr0lik\DtoToSwagger\Processor\AbstractProcessor;
 use Kr0lik\DtoToSwagger\Processor\RoutePreparer;
 use Kr0lik\DtoToSwagger\Processor\RoutingProcessor;
 use Kr0lik\DtoToSwagger\PropertyTypeDescriber\Describers\ArrayDescriber;
+use Kr0lik\DtoToSwagger\PropertyTypeDescriber\Describers\AssociativeArrayDescriber;
 use Kr0lik\DtoToSwagger\PropertyTypeDescriber\Describers\BooleanDescriber;
 use Kr0lik\DtoToSwagger\PropertyTypeDescriber\Describers\CompoundPropertyDescriber;
 use Kr0lik\DtoToSwagger\PropertyTypeDescriber\Describers\DateTimeDescriber;
@@ -210,7 +211,7 @@ class DtoToSwaggerServiceProvider extends ServiceProvider
                 HeaderParameterDescriber::class,
                 RequestDescriber::class,
                 ResponseDescriber::class,
-                ExceptionDescriber::class,
+                ThrowsDescriber::class,
             ];
         });
 
@@ -241,6 +242,7 @@ class DtoToSwaggerServiceProvider extends ServiceProvider
                 EnumDescriber::class,
                 NullableDescriber::class,
                 ArrayDescriber::class,
+                AssociativeArrayDescriber::class,
                 CompoundPropertyDescriber::class,
                 ObjectDescriber::class,
             ];
